@@ -1,0 +1,72 @@
+div.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: flex-start;
+  &-item {
+    order: 0;
+    flex: 1;
+    align-self: auto;
+    min-width: 24%;
+    margin: 0.25rem;
+    position: relative;
+    background: #000;
+    img {
+      opacity: 1;
+      transition: 0.3s;
+    }
+    &:hover img {
+      opacity: 0.4 !important;
+    }
+    &:hover div.text small {
+      display: block;
+      height: auto;
+    }
+    div.text {
+      position: absolute;
+      bottom: 1rem;
+      margin: 0 1rem;
+      display: block;
+      color: #fff;
+      h3 {
+        margin: 0.5rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fff;
+      }
+      small {
+        transition: all 0.3s;
+        display: block;
+        height: 0px;
+        overflow: hidden;
+      }
+      span {
+        display: inline-block;
+        font-size: 0.75rem;
+        background: #000;
+        padding: 0 0.5rem;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1626px) {
+  div.grid-item {
+    min-width: 30%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  div.grid-item {
+    min-width: 45%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  div.grid-item {
+    min-width: 100%;
+  }
+}

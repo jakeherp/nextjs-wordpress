@@ -1,0 +1,56 @@
+@import "./layout/defaults";
+@import "./layout/layout";
+@import "./layout/footer";
+@import "./layout/header";
+@import "./layout/grid";
+
+/* div.grid-item img {
+  width: 100%;
+}
+
+div.grid-item:nth-child(6n + 3) {
+  grid-column: span 2;
+}
+
+div.grid-item:nth-child(6n + 3) img {
+  height: 240px !important;
+}
+div.grid-item:nth-child(9n) {
+  grid-column: span 2;
+} */
+
+@media only screen and (max-width: 1626px) {
+  div.grid-item {
+    min-width: 30%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  div.grid-item {
+    min-width: 45%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  div.grid-item {
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 100%;
+  }
+  div#mobile-toggle {
+    display: block;
+  }
+  header > div.header-content > nav#main-menu {
+    display: none;
+  }
+  footer.page-footer {
+    margin: 0 auto;
+    padding: 1.45rem 1.0875rem;
+    display: block;
+    justify-content: space-between;
+  }
+}
