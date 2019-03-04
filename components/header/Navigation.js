@@ -9,19 +9,29 @@ const navigation = () => (
       }}
     >
       <li>
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
       </li>
       <li>
-        <Link href="/about/">About</Link>
+        <Link href="/about/">
+          <a>About</a>
+        </Link>
       </li>
       <li>
-        <Link href="/work/">Work</Link>
+        <Link href="/work/">
+          <a>Work</a>
+        </Link>
       </li>
       <li>
-        <Link href="/contact/">Contact</Link>
+        <Link href="/contact/">
+          <a>Contact</a>
+        </Link>
       </li>
       <li>
-        <Link href="/business-of-marketing/">Business of Marketing</Link>
+        <Link href="/business-of-marketing/">
+          <a>Business of Marketing</a>
+        </Link>
       </li>
     </ul>
   </nav>

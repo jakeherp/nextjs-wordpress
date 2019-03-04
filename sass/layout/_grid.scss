@@ -1,10 +1,13 @@
-div.grid {
+.grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: stretch;
   align-items: flex-start;
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
   &-item {
     order: 0;
     flex: 1;
@@ -16,6 +19,7 @@ div.grid {
     img {
       opacity: 1;
       transition: 0.3s;
+      overflow: hidden;
     }
     &:hover img {
       opacity: 0.4 !important;
@@ -54,19 +58,19 @@ div.grid {
 }
 
 @media only screen and (max-width: 1626px) {
-  div.grid-item {
+  .grid-item {
     min-width: 30%;
   }
 }
 
 @media only screen and (max-width: 1100px) {
-  div.grid-item {
+  .grid-item {
     min-width: 45%;
   }
 }
 
 @media only screen and (max-width: 700px) {
-  div.grid-item {
+  .grid-item {
     min-width: 100%;
   }
 }

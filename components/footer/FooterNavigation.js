@@ -4,7 +4,9 @@ const FooterNavigation = () => (
   <nav>
     <ul className="footer-menu">
       <li>
-        <Link href="/about/">About Us</Link>
+        <Link href="/about/">
+          <a>About Us</a>
+        </Link>
       </li>
       <li>
         <a href="https://www.raconteur.net/work-for-us/">Careers</a>

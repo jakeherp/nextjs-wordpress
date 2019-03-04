@@ -2,6 +2,7 @@ import Logo from "./Logo";
 import Navigation from "./Navigation";
 import ToggleButton from "./ToggleButton";
 import BomLogo from "./BomLogo";
+import MobileMenu from "./MobileMenu";
 
 class Header extends React.Component {
   constructor(props) {
