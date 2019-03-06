@@ -43,10 +43,16 @@ div.mobile-menu {
 #bom-header {
   background: #191919;
   display: flex;
+  justify-content: space-between;
   padding: 1rem;
   margin-bottom: 0.5rem;
   svg {
     width: 233px;
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 

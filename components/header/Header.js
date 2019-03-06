@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import Navigation from "./Navigation";
 import ToggleButton from "./ToggleButton";
-import BomLogo from "./BomLogo";
+import BomHeader from "./BomHeader";
 import MobileMenu from "./MobileMenu";
 
 class Header extends React.Component {
@@ -11,8 +11,13 @@ class Header extends React.Component {
     this.handleMenuClick = this.handleMenuClick.bind(this);
 
     this.state = {
-      showMenu: false
+      showMenu: false,
+      location: ""
     };
+  }
+
+  componentDidMount() {
+    this.setState({ location: window.location.href });
   }
 
   handleMenuClick() {
@@ -32,9 +37,9 @@ class Header extends React.Component {
             </div>
           </div>
         </header>
-        <div id="bom-header">
-          <BomLogo />
-        </div>
+        {this.state.location.indexOf("business-of-marketing") > -1 ? (
+          <BomHeader />
+        ) : null}
       </>
     );
   }

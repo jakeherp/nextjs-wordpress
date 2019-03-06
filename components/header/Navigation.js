@@ -9,27 +9,27 @@ const navigation = () => (
       }}
     >
       <li>
-        <Link href="/">
+        <Link prefetch href="/">
           <a>Home</a>
         </Link>
       </li>
       <li>
-        <Link href="/about/">
+        <Link prefetch href="/about">
           <a>About</a>
         </Link>
       </li>
       <li>
-        <Link href="/work/">
+        <Link prefetch href="/work">
           <a>Work</a>
         </Link>
       </li>
       <li>
-        <Link href="/contact/">
+        <Link prefetch href="/contact">
           <a>Contact</a>
         </Link>
       </li>
       <li>
-        <Link href="/business-of-marketing/">
+        <Link prefetch href="/business-of-marketing">
           <a>Business of Marketing</a>
         </Link>
       </li>

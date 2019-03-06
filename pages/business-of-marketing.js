@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 export default class extends React.Component {
   static async getInitialProps() {
     const response = await axios.get(
-      "https://agency.raconteur.net/wp-json/wp/v2/posts?per_page=12&_embed"
+      "https://agency.raconteur.net/wp-json/wp/v2/posts?per_page=24&_embed"
     );
 
     return {
@@ -32,7 +32,11 @@ export default class extends React.Component {
           {this.props.posts.map(post => {
             return (
               <li key={post.id} className="grid-item">
-                <Link href={`/business-of-marketing/${post.slug}`}>
+                <Link
+                  prefetch
+                  href={`/single?slug=${post.slug}`}
+                  as={`/business-of-marketing/${post.slug}`}
+                >
                   <a>
                     <img
                       src={
