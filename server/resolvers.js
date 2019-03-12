@@ -7,6 +7,8 @@ module.exports = {
     user: (_, { id }, { dataSources }) =>
       dataSources.wordpressAPI.getUserById({ userId: id }),
     media: (_, { id }, { dataSources }) =>
-      dataSources.wordpressAPI.getMediaById({ mediaId: id })
+      dataSources.wordpressAPI.getMediaById({ mediaId: id }),
+    categories: (_, { id }, { dataSources }) =>
+      dataSources.wordpressAPI.getCategoriesByIds({ categoryIds: id })
   }
 };

@@ -8,6 +8,7 @@ const typeDefs = gql`
     post(id: ID!): Post
     user(id: ID!): Users
     media(id: ID!): Media
+    categories(id: ID!): Categories
   }
 
   type Post {
@@ -21,8 +22,7 @@ const typeDefs = gql`
     excerpt: String
     author: Users
     featuredMedia: Media
-    categories: [Categories]
-    tags: [Tags]
+    categories: Categories
   }
 
   type Users {
@@ -57,14 +57,6 @@ const typeDefs = gql`
     description: String
     slug: String!
     parent: Categories
-  }
-
-  type Tags {
-    id: ID!
-    count: Int
-    name: String!
-    description: String
-    slug: String!
   }
 `;
 

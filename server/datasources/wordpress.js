@@ -27,6 +27,11 @@ class WordPressAPI extends RESTDataSource {
     return this.usersReducer(response);
   }
 
+  async getCategoriesByIds(categoryIds) {
+    const response = await this.get(`categories/${categoryIds}`);
+    return this.categoriesReducer(response);
+  }
+
   async getMediaById(mediaId) {
     const response = await this.get(`media/${mediaId}`);
     return this.mediaReducer(response);
@@ -44,8 +49,7 @@ class WordPressAPI extends RESTDataSource {
       excerpt: post.excerpt.rendered,
       author: Promise.resolve(this.getUserById(post.author)),
       featuredMedia: Promise.resolve(this.getMediaById(post.featured_media)),
-      categories: [post.categories],
-      tags: [post.tags]
+      categories: Promise.resolve(this.getCategoriesByIds(post.categories))
     };
   }
 
@@ -56,6 +60,17 @@ class WordPressAPI extends RESTDataSource {
       description: user.description,
       slug: user.slug,
       avatar: [user.avatar_urls]
+    };
+  }
+
+  categoriesReducer(cat) {
+    return {
+      id: cat.id,
+      name: cat.name,
+      count: cat.count,
+      description: cat.description,
+      slug: cat.slug,
+      parent: cat.parent
     };
   }
 
