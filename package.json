@@ -24,6 +24,7 @@
     "next-page-loading-bar": "^1.0.0",
     "next-page-transitions": "^1.0.0-alpha.6",
     "next-routes": "^1.4.2",
+    "next-with-apollo": "^3.4.0",
     "nextjs-wp": "^1.0.4",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",

@@ -1,8 +1,10 @@
 import App, { Container } from "next/app";
 import React from "react";
 import { PageTransition } from "next-page-transitions";
+import { ApolloProvider } from "react-apollo";
+import withApollo from "../hoc/withApollo";
 
-export default class MyApp extends App {
+class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
 
@@ -14,29 +16,33 @@ export default class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, apollo } = this.props;
     return (
       <Container>
-        <PageTransition timeout={300} classNames="page-transition">
-          <Component {...pageProps} />
-        </PageTransition>
-        <style>{`
-          .page-transition-enter {
-            opacity: 0;
-          }
-          .page-transition-enter-active {
-            opacity: 1;
-            transition: opacity 300ms;
-          }
-          .page-transition-exit {
-            opacity: 1;
-          }
-          .page-transition-exit-active {
-            opacity: 0;
-            transition: opacity 300ms;
-          }
-        `}</style>
+        <ApolloProvider client={apollo}>
+          <PageTransition timeout={300} classNames="page-transition">
+            <Component {...pageProps} />
+          </PageTransition>
+          <style>{`
+            .page-transition-enter {
+              opacity: 0;
+            }
+            .page-transition-enter-active {
+              opacity: 1;
+              transition: opacity 300ms;
+            }
+            .page-transition-exit {
+              opacity: 1;
+            }
+            .page-transition-exit-active {
+              opacity: 0;
+              transition: opacity 300ms;
+            }
+          `}</style>
+        </ApolloProvider>
       </Container>
     );
   }
 }
+
+export default withApollo(MyApp);
