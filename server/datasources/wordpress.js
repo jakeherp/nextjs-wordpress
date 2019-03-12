@@ -13,52 +13,6 @@ class WordPressAPI extends RESTDataSource {
       : [];
   }
 
-  postReducer(post) {
-    return {
-      id: post.id || 0,
-      date: post.date,
-      modified: post.modified,
-      slug: post.slug,
-      status: post.status,
-      title: post.title.rendered,
-      content: post.content.rendered,
-      excerpt: post.excerpt.rendered,
-      author: {
-        id: post.users.id,
-        name: post.users.name,
-        description: post.users.description,
-        slug: post.users.slug,
-        avatar: [post.users.avatar_urls]
-      },
-      featuredMedia: {
-        id: post.media.id,
-        date: post.media.date,
-        modified: post.media.modified,
-        slug: post.media.slug,
-        guid: post.media.guid,
-        title: post.media.title,
-        author: {
-          id: post.users.id,
-          name: post.users.name,
-          description: post.users.description,
-          slug: post.users.slug,
-          avatar: [post.users.avatar_urls]
-        },
-        description: post.media.description.rendered,
-        altText: post.media.alt_text,
-        mimeType: post.media.mime_type,
-        details: {
-          width: post.media.media_details.width,
-          height: post.media.media_details.height,
-          file: post.media.media_details.file
-        },
-        post: post.media.post
-      },
-      categories: [post.categories],
-      tags: [post.tags]
-    };
-  }
-
   async getPostById({ postId }) {
     const response = await this.get("posts", { id: postId });
     return this.postReducer(response[0]);
@@ -66,6 +20,61 @@ class WordPressAPI extends RESTDataSource {
 
   getPostsByIds({ postIds }) {
     return Promise.all(postIds.map(postId => this.getPostById({ postId })));
+  }
+
+  async getUserById(userId) {
+    const response = await this.get(`users/${userId}`);
+    return this.usersReducer(response);
+  }
+
+  async getMediaById(mediaId) {
+    const response = await this.get(`media/${mediaId}`);
+    return this.mediaReducer(response);
+  }
+
+  postReducer(post) {
+    return {
+      id: post.id,
+      date: post.date,
+      modified: post.modified,
+      slug: post.slug,
+      status: post.status,
+      title: post.title.rendered,
+      content: post.content.rendered,
+      excerpt: post.excerpt.rendered,
+      author: Promise.resolve(this.getUserById(post.author)),
+      featuredMedia: Promise.resolve(this.getMediaById(post.featured_media)),
+      categories: [post.categories],
+      tags: [post.tags]
+    };
+  }
+
+  usersReducer(user) {
+    return {
+      id: user.id,
+      name: user.name,
+      description: user.description,
+      slug: user.slug,
+      avatar: [user.avatar_urls]
+    };
+  }
+
+  mediaReducer(media) {
+    return {
+      id: media.id,
+      date: media.date,
+      modified: media.modified,
+      slug: media.slug,
+      guid: media.guid.rendered,
+      title: media.title.rendered,
+      author: Promise.resolve(this.getUserById(media.author)),
+      description: media.description.rendered,
+      altText: media.alt_text,
+      mimeType: media.mime_type,
+      width: media.media_details.width,
+      height: media.media_details.height,
+      file: media.media_details.file
+    };
   }
 }
 

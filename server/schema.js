@@ -3,7 +3,11 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     posts: [Post]!
+    users: [Users]!
+    mediaFiles: [Media]!
     post(id: ID!): Post
+    user(id: ID!): Users
+    media(id: ID!): Media
   }
 
   type Post {
@@ -40,14 +44,10 @@ const typeDefs = gql`
     description: String
     altText: String
     mimeType: String
-    details: [MediaDetails]
-    post: Int
-  }
-
-  type MediaDetails {
     width: Int
     height: Int
     file: String
+    post: Int
   }
 
   type Categories {
