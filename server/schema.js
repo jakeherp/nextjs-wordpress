@@ -3,10 +3,12 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     posts: [Post]!
-    users: [Users]!
+    guides: [Guide]!
+    users: [User]!
     mediaFiles: [Media]!
     post(id: ID!): Post
-    user(id: ID!): Users
+    guide(id: ID!): Guide
+    user(id: ID!): User
     media(id: ID!): Media
     categories(id: ID!): Categories
   }
@@ -20,12 +22,26 @@ const typeDefs = gql`
     title: String!
     content: String
     excerpt: String
-    author: Users
+    author: User
     featuredMedia: Media
     categories: Categories
   }
 
-  type Users {
+  type Guide {
+    id: ID!
+    date: String
+    modified: String
+    slug: String!
+    status: String!
+    title: String!
+    content: String
+    excerpt: String
+    author: User
+    featuredMedia: Media
+    categories: Categories
+  }
+
+  type User {
     id: ID!
     name: String!
     description: String
@@ -40,7 +56,7 @@ const typeDefs = gql`
     slug: String
     guid: String
     title: String
-    author: Users
+    author: User
     description: String
     altText: String
     mimeType: String

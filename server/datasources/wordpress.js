@@ -22,9 +22,25 @@ class WordPressAPI extends RESTDataSource {
     return Promise.all(postIds.map(postId => this.getPostById({ postId })));
   }
 
+  async getAllGuides() {
+    const response = await this.get("guide");
+    return Array.isArray(response)
+      ? response.map(guide => this.guideReducer(guide))
+      : [];
+  }
+
+  async getGuideById({ guideId }) {
+    const response = await this.get("guide", { id: guideId });
+    return this.guideReducer(response[0]);
+  }
+
+  getGuidesByIds({ guideIds }) {
+    return Promise.all(guideIds.map(guideId => this.getGuideById({ guideId })));
+  }
+
   async getUserById(userId) {
     const response = await this.get(`users/${userId}`);
-    return this.usersReducer(response);
+    return this.userReducer(response);
   }
 
   async getCategoriesByIds(categoryIds) {
@@ -53,7 +69,21 @@ class WordPressAPI extends RESTDataSource {
     };
   }
 
-  usersReducer(user) {
+  guideReducer(guide) {
+    return {
+      id: guide.id,
+      date: guide.date,
+      modified: guide.modified,
+      slug: guide.slug,
+      status: guide.status,
+      title: guide.title.rendered,
+      content: guide.content.rendered,
+      featuredMedia: Promise.resolve(this.getMediaById(guide.featured_media)),
+      categories: Promise.resolve(this.getCategoriesByIds(guide.categories))
+    };
+  }
+
+  userReducer(user) {
     return {
       id: user.id,
       name: user.name,

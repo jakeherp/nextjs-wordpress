@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "name": "raconteur-agency-graphql",
+  "alias": "arac.gql",
   "builds": [{ "src": "/index.js", "use": "@now/node-server" }],
   "routes": [{ "src": "/.*", "dest": "/index.js" }]
 }
