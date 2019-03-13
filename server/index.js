@@ -7,6 +7,8 @@ const WordPressAPI = require("./datasources/wordpress");
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true,
+  playground: true,
   dataSources: () => ({
     wordpressAPI: new WordPressAPI()
   })
