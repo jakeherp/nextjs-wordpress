@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Query {
-    posts: [Post]!
+    posts(pageSize: Int, after: String): PostsConnection!
     guides: [Guide]!
     users: [User]!
     mediaFiles: [Media]!
@@ -11,6 +11,12 @@ const typeDefs = gql`
     user(id: ID!): User
     media(id: ID!): Media
     categories(id: ID!): Categories
+  }
+
+  type PostsConnection {
+    cursor: String!
+    hasMore: Boolean!
+    posts: [Post]!
   }
 
   type Post {

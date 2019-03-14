@@ -56,6 +56,7 @@ class WordPressAPI extends RESTDataSource {
   postReducer(post) {
     return {
       id: post.id,
+      cursor: `${post.id}`,
       date: post.date,
       modified: post.modified,
       slug: post.slug,
