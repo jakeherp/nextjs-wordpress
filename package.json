@@ -18,7 +18,7 @@
     "babel-plugin-styled-components": "^1.8.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
-    "next": "^8.0.3",
+    "next": "^9.3.2",
     "next-images": "^1.0.4",
     "next-nprogress": "^1.4.0",
     "next-page-loading-bar": "^1.0.0",
